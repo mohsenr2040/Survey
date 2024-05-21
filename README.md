@@ -6,7 +6,7 @@
 * [Launch](#Launch)
 
 ## General info
-eShop web application 
+Survey web application 
 	
 ## Technologies
 Project is created with:
