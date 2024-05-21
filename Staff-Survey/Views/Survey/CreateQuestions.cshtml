@@ -1,0 +1,332 @@
+﻿@using Staff_Survey.ViewModel
+@model QuestionViewModel
+
+@{
+    ViewData["Title"] = "CreateQuestions";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<section>
+
+    <div class="form-control">
+
+        <label for="basicSelect"> نظرسنجی</label>
+
+        @Html.DropDownList("ddl_Survey", (SelectList)ViewData["vm.Select"], "انتخاب کنید...", Model._surveyId)
+
+        <label for="Question" id="label-question">
+            سوال
+        </label>
+
+        <input type="text" id="question" placeholder="متن سوال را وارد کنید" />
+
+    </div>
+    <div class="div-items">
+        <label for="Question" id="label-question">
+            آیتم پاسخ
+        </label>
+        <table style="width:100%">
+            <tr>
+                <td>
+                    <table style="width:100%">
+                        <tr>
+                            <td style="width:50%">
+                                <input style="border: 1px solid #777; border-radius: 2px; font-family: inherit; padding: 10px; display: block; width: 80%; text-align: right;"
+                                       type="text" id="inputItem" placeholder="آیتم پاسخ را وارد کنید">
+                            </td>
+                            <td style="width:50%" dir="rtl">
+                                <a class="addbutton" Id="btnAddItems">افزودن آیتم پاسخ  </a>
+
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <table id="tbl_Items" style="width:100%" class="col-md-12 table table-bordered table-hover  table-condensed table-responsive">
+                        <tr style="width:100%; background-color:lightsteelblue">
+                            <td style="width:70%;text-align:center">آیتم ها  </td>
+                            <td style="text-align:center"> </td>
+                        </tr>
+
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <a class="a-button" id="btnAddQuestions">ثبت</a>
+
+    @if (Model.Questions != null)
+    {
+        <label for="Questions" id="label-question">
+            سوال ها
+        </label>
+
+
+
+        @foreach (var question in Model.Questions)
+        {
+            <div style="border: 1px solid #564040; margin: 10px auto;">
+                <table style="width:100%">
+                    <tr>
+                        <td>
+                            <table id="tbl_Question" style="width:100%">
+                                <tr>
+                                    <td style="width:90%">
+                                        <label for="Questions" id="label-question">
+                                            @question.Question
+                                        </label>
+                                    </td>
+                                    <td style="width:10%">
+                                        <a class="removebutton" Id="btnDeleteQuestion" onclick="DeleteQuestion(@question.QuestionId)"> حذف  </a>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table style="width:100%">
+                                <tbody>
+
+                                    <tr>
+                                        @foreach (var item in question.Items)
+                                        {
+                                            <td>
+                                                <input type="radio" name="item">@item.ItemValue
+                                            </td>
+                                        }
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        }
+
+    }
+
+
+</section>
+
+
+@section Scripts
+{
+
+    <link href="~/Sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <script src="~/Sweetalert2/sweetalert2.min.js"></script>
+
+    <script>
+
+        
+        $("#ddl_Survey").change(function () {
+             
+            window.location = "/Survey/CreateQuestions?surveyId=" + $("#ddl_Survey").val();
+                
+        });
+
+        $("#btnAddItems").on("click", function () {
+
+            if ($("#question").val() == '') {
+                swal.fire(
+                    'هشدار!',
+                    "سوال را وارد نمایید",
+                    'warning'
+                );
+                return false;
+            }
+
+            var txtinputItem = $("#inputItem").val();
+            if (txtinputItem == "") {
+                swal.fire(
+                    'هشدار!',
+                    "آیتم پاسخ را باید وارد کنید",
+                    'warning'
+                );
+                return false;
+            }
+
+            if ($("#ddl_Survey").val() == 0) {
+                swal.fire(
+                    'هشدار!',
+                    "عنوان نظرسنجی را باید انتخاب کنید",
+                    'warning'
+                );
+                return false;
+            }
+
+            //else {
+                $("#tbl_Items").append('<tr> <td>' + txtinputItem + '</td> <td style="text-align:center"> <a  class="removebutton"> حذف </a> </td> </tr>');
+                $("#inputItem").val('');
+
+                ///diable dropdown
+                $("#ddl_Survey").prop("disabled", true);
+          //  }
+
+           
+               
+        });
+
+        $("#tbl_Items").on('click', '.removebutton', function () {
+            $(this).closest('tr').remove();
+        });
+
+
+
+        $('#btnAddQuestions').on('click', function () {
+
+            var question = $("#question").val();
+            var _surveyId = $('#ddl_Survey').val()
+
+            if ($("#ddl_Survey").val() == 0) {
+                swal.fire(
+                    'هشدار!',
+                    "عنوان نظرسنجی را باید انتخاب کنید",
+                    'warning'
+                );
+                return false;
+            }
+            if (question == '') {
+                swal.fire(
+                    'هشدار!',
+                    "سوال را وارد نمایید",
+                    'warning'
+                );
+           
+                return false;
+            }
+
+            var data = new FormData();
+
+            //دریافت مقادیر از تکس باکس  ....
+            data.append("Question", $("#question").val());
+            data.append("surveyId", $("#ddl_Survey").val());
+
+
+            //دریافت آیتم ها از جدول
+            var questionItems = $('#tbl_Items tr:gt(0)').map(function () {
+                return {
+                    ItemValue: $(this.cells[0]).text(),
+                };
+            }).get();
+
+            if ($.isEmptyObject(questionItems)) {
+                swal.fire(
+                    'هشدار!',
+                    "!حداقل یک آیتم پاسخ وارد نمایید",
+                    'warning'
+                );
+                return false;
+            }
+
+
+            $.each(questionItems, function (i, val) {
+                data.append('[' + i + '].ItemValue', val.ItemValue);
+            });
+
+          
+
+            // ارسال اطلاعات بع کنترلر
+            var ajaxRequest = $.ajax({
+                type: "POST",
+                url: "CreateQuestions",
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function (data) {
+
+                    if (data.isSuccess == true) {
+
+                        swal.fire(
+                            'موفق!',
+                            data.message,
+                            'success'
+                        ).then(function (isConfirm) {
+                            window.location.href = "/survey/CreateQuestions";
+
+                        });
+                    }
+                    else {
+
+                        swal.fire(
+                            'هشدار!',
+                            data.message,
+                            'warning'
+                        );
+                    }
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                    alert(thrownError);
+                }
+
+            });
+
+            ajaxRequest.done(function (xhr, textStatus) {
+                // Do other operation
+            });
+        });
+
+
+        function DeleteQuestion(QuestionId) {
+            swal.fire({
+                title: 'حذف سوال',
+                text: "کاربر گرامی از حذف سوال مطمئن هستید؟",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#7cacbe',
+                confirmButtonText: 'بله ، سوال حذف شود',
+                cancelButtonText: 'خیر'
+            }).then((result) => {
+                if (result.value) {
+                    var postData = {
+                        'questionId': QuestionId,
+                    };
+                    $.ajax({
+                        contentType: 'application/x-www-form-urlencoded',
+                        dataType: 'json',
+                        type: "POST",
+                        url: "DeleteQuestion",
+                        data: postData,
+
+                        success: function (data) {
+                            if (data.isSuccess == true) {
+                                swal.fire(
+                                    'موفق!',
+                                    data.message,
+                                    'success'
+                                ).then(function (isConfirm) {
+                                    location.reload();
+                                });
+                            }
+                            else {
+
+                                swal.fire(
+                                    'هشدار!',
+                                    data.message,
+                                    'warning'
+                                );
+
+                            }
+                        },
+                        error: function (request, status, error) {
+                            alert(request.responseText);
+                        }
+
+                    });
+
+                }
+            })
+        }
+    </script>
+}

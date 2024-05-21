@@ -1,0 +1,110 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService _authorizationService
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+   
+    <title>
+        Build a Survey
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Convex admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Convex admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="viewport" content="width=device-width" />
+
+    
+    <link rel="stylesheet" href="~/css/MyLayout.css">
+</head>
+
+
+<body style="font-family:'B Nazanin'; text-align:right">
+
+
+    <h1 style="text-align:center">ایجاد نظرسنجی</h1>
+    <div class="topnav" dir="rtl">
+        <a href="~/home/index" dir="rtl">خانه</a>
+        <a href="~/survey/CreateSurvey" dir="rtl">مدیر سیستم</a>
+
+        <a href="~/Signout" style="text-decoration:none;color:#db0001">
+            @* <img style="width:128px;height:37px" src="~/Login/logout4.png" alt="خروج"> *@
+            <span >خروج</span>
+        </a>
+
+        <span class="username"> @User.Claims.Where(c => c.Type == "FullName").FirstOrDefault().Value </span>
+    </div>
+
+ @*   <p>
+          @if (User.Identity.IsAuthenticated)
+        {
+            <a href="~/Signout" style="background-image:url(../../wwwroot/Login/logout.jpg); text-decoration:none">
+                @User.Claims.Where(c => c.Type == "FullName").FirstOrDefault().Value
+                خروج
+            </a>
+        }
+        
+     
+    </p>
+    <p>
+        <span class="glyphicon">&#xe163;</span>
+    </p>*@
+
+
+    <table style="width:100%; vertical-align:top" dir="rtl">
+        <tr>
+            <td style="width:20%;vertical-align:top">
+
+                <a class="a-button-menu" href="~/survey/CreateSurvey"> ثبت عنوان نظرسنجی </a>
+
+                <a class="a-button-menu" href="~/survey/CreateQuestions"> ثبت سوال های نظرسنجی</a>
+
+               @*  <a class="a-button-menu" href="~/survey/CreateItems">ثبت آیتم های پاسخ  </a> *@
+
+               
+            </td>
+            <td dir="rtl" style="vertical-align:top ; padding-right: 10px ">
+                <form id="form" dir="rtl">
+
+                    @RenderBody()
+
+                </form>
+            </td>
+
+        </tr>
+    </table>
+
+
+    <!-- Create Form -->
+ 
+
+</body>
+
+</html>
+
+<script src="~/app-assets/vendors/js/core/jquery-3.3.1.min.js"></script>
+<script src="~/app-assets/js/persian-datepicker.min.js"></script>
+<script src="~/app-assets/vendors/js/core/popper.min.js"></script>
+<script src="~/app-assets/vendors/js/core/bootstrap.min.js"></script>
+<script src="~/app-assets/vendors/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="~/app-assets/vendors/js/prism.min.js"></script>
+<script src="~/app-assets/vendors/js/jquery.matchHeight-min.js"></script>
+<script src="~/app-assets/vendors/js/screenfull.min.js"></script>
+<script src="~/app-assets/vendors/js/pace/pace.min.js"></script>
+<!-- BEGIN VENDOR JS-->
+<!-- BEGIN PAGE VENDOR JS-->
+<!-- END PAGE VENDOR JS-->
+<!-- BEGIN CONVEX JS-->
+<script src="~/app-assets/js/app-sidebar.js"></script>
+<script src="~/app-assets/js/notification-sidebar.js"></script>
+<script src="~/app-assets/js/customizer.js"></script>
+
+@RenderSection("Scripts", false)
+@RenderSection("Modals", false)

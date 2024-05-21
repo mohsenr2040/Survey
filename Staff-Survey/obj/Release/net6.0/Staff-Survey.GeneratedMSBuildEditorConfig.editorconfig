@@ -1,0 +1,48 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Staff_Survey
+build_property.RootNamespace = Staff_Survey
+build_property.ProjectDir = C:\zSpecial\Projects\Survey\Staff-Survey1\Staff-Survey\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\zSpecial\Projects\Survey\Staff-Survey1\Staff-Survey
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/zSpecial/Projects/Survey/Staff-Survey1/Staff-Survey/Views/Authentication/Signin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aGVudGljYXRpb25cU2lnbmluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/zSpecial/Projects/Survey/Staff-Survey1/Staff-Survey/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/zSpecial/Projects/Survey/Staff-Survey1/Staff-Survey/Views/Home/Survey.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTdXJ2ZXkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/zSpecial/Projects/Survey/Staff-Survey1/Staff-Survey/Views/Shared/_MyLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9NeUxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/zSpecial/Projects/Survey/Staff-Survey1/Staff-Survey/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/zSpecial/Projects/Survey/Staff-Survey1/Staff-Survey/Views/Survey/CreateQuestions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VydmV5XENyZWF0ZVF1ZXN0aW9ucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/zSpecial/Projects/Survey/Staff-Survey1/Staff-Survey/Views/Survey/CreateSurvey.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VydmV5XENyZWF0ZVN1cnZleS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/zSpecial/Projects/Survey/Staff-Survey1/Staff-Survey/Views/Survey/ShowSurveyResult.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3VydmV5XFNob3dTdXJ2ZXlSZXN1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
